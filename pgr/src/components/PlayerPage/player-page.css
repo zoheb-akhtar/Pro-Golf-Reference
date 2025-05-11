@@ -1,0 +1,142 @@
+.player-page-container {
+    height: 80%;
+    background-color: hsl(0, 0%, 95%);
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+  }
+  
+  
+  .name-container {
+    margin-top: 64px;
+    line-height: 18px;
+  }
+  .player-page-first-name,
+  .player-page-second-name,
+  .player-page-last-name {
+  font-size: 48px;
+  font-weight: bold;
+  }
+  .player-page-first-name {
+  margin-bottom: -20px;
+  }
+  
+  .player-page-nation-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .left-image {
+  width: 500px;
+  height: 600px;
+  }
+  
+  .player-page-flag {
+    width: 32px;
+    margin-right: 8px;
+  }
+  
+  .player-page-nation {
+    color: gray;
+    font-weight: bold;
+    margin-right: 24px;
+  }
+  
+  .player-nation-and-league-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+  }
+  .player-page-league-logo {
+    width: 32px;
+  }
+  
+  .player-world-ranking {
+    font-weight: bold;
+    color: gray;
+    margin-top: 4px;
+  }
+  
+  .player-stats-container {
+    display: flex;
+  flex-wrap: wrap; /* enables wrapping */
+  justify-content: center; /* centers the wrapped lines */
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 100%; /* prevents overflow */
+  box-sizing: border-box;
+  }
+  
+  .player-stat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  
+  }
+  
+  .stat-tile {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    padding: 8px;
+    text-align: center;
+    width: 140px;
+    margin: 0.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+  }
+  
+  .stat-tile:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stat-title {
+    font-size: 10.2px;
+    color: #555;
+    margin-bottom: 6px;
+    letter-spacing: 0.5px;
+  }
+  
+  .stat-value {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #222;
+  }
+
+  .player-page-rank {
+    color: gray;
+    font-size: 12px;
+  }
+
+    @media (max-width: 600px) {
+      .left-image {
+        width: 180px;
+        height: 200px;
+        margin-bottom: -100px;
+      }
+    
+      .player-page-first-name,
+      .player-page-second-name,
+      .player-page-last-name {
+        font-size: 32px;
+        text-align: center;
+      }
+    
+      .player-page-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    
+      .player-nation-and-league-container {
+        justify-content: center;
+      }
+
+      .player-stats-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    

@@ -1,0 +1,91 @@
+.players-page-top {
+    margin-left: 64px;
+    margin-bottom: 32px;
+  }
+  
+  .selects-container {
+    margin-top: 32px;
+  }
+  .search-button {
+    width: 60px;
+    height: 60px;
+    background-color: #044b3a;
+    border: none;
+  }
+  
+  .search-input {
+    height: 55px;
+    width: 400px;
+    border: 1px solid gray;
+    padding-left: 10px;
+    font-family: Inter;
+    font-size: 14px;
+    margin-top: 3px;
+    margin-right: 24px;
+  }
+  
+  .search-input:focus {
+    outline: none;
+  }
+  
+  .select {
+    margin-left: 4px;
+    padding: 8px;
+    font-family: "Inter";
+    font-size: 15.5px;
+    margin-right: 24px;
+  }
+  
+  .select:focus {
+    outline: none;
+  }
+  
+  .players-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1.2rem;
+    padding: 1rem;
+  }
+  
+  .error-msg-players {
+    width: 500px;
+    margin-left: 100px;
+  }
+
+  .show-more-button {
+    color: white;
+    background-color: #044b3a;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 24px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 600px) {
+    .search-input {
+      width: 200px;
+    }
+    .players-container {
+      grid-template-columns: repeat(1, 1fr); /* Or 1 for stacked */
+    }
+
+    .players-page-top {
+      margin-left: 32px;
+      margin-bottom: 16px;
+      margin-top: -48px;
+    }
+
+   .selects-container {
+    margin-top: 16px;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    gap: 6px;
+   }
+   .select {
+    width: 70px;
+   }
+  }
+
+  

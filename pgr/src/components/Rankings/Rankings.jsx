@@ -1,0 +1,94 @@
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import countryCodes from '../../countryCodes'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import "./rankings.css"
+
+export default function Rankings() {
+  const [selectedStat, setSelectedStat] = useState("world_ranking")
+  const [players, setPlayers] = useState([])
+  const [searchQuery, setSearchQuery] = useState("")
+  const navigate = useNavigate()
+
+  async function getRankingsByStat(selectedStat) {
+    try {
+      const direction = selectedStat === "world_ranking" || selectedStat === "scoring_avg" ? "asc" : "desc"
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/players/stat?direction=${direction}&stat=${selectedStat}&${searchQuery ? `name=${searchQuery}` : null}`)
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error)
+        return data
+      }
+      setPlayers(data)
+    } catch (error) {
+      console.error("Error getting players", error.message)
+    }
+    
+  }
+
+  useEffect(() => {
+    getRankingsByStat(selectedStat)
+  }, [searchQuery])
+
+  useEffect(() => {
+   getRankingsByStat(selectedStat)
+  }, [selectedStat])
+
+  const isPercent = selectedStat === "fairways" || selectedStat === "gir" || selectedStat === "scrambling" ? "%" : ""
+  const isSG = selectedStat === "sg_approach" || selectedStat === "sg_putting" || selectedStat === "sg_total"
+
+  return (
+    <>
+    <div className="rankings-page-top">
+        <h1 className="rankings-header">Rankings</h1>
+    <div className="search-input-container">
+    <button style={{marginLeft: "32px", marginBottom: "18px"}}className="search-button">
+        <FontAwesomeIcon icon={faSearch} color="white" size="1x"/>
+      </button>
+      <input className="search-input" placeholder="Search the leaderboard" onChange={(e) => setSearchQuery(e.target.value)}/>
+    </div>
+   
+   <div className="select-container">
+   <label className="select-label" htmlFor="stat-select">Rank By: </label>
+    <select className="select" value={selectedStat} onChange={(e) => setSelectedStat(e.target.value)} id="stat-select">
+      <option value="world_ranking">World Ranking</option>
+      <option value="scoring_avg">Scoring Average</option>
+      <option value="driving_avg">Driving Average</option>
+      <option value="fairways">Fairways Hit</option>
+      <option value="scrambling">Scrambling</option>
+      <option value="sg_approach">Strokes Gained: Approach</option>
+      <option value="sg_putting">Strokes Gained: Putting</option>
+      <option value="sg_total">Strokes Gained: Total</option>
+    </select>
+   </div>
+  
+    </div>
+    <div className="leaderboard-container">
+      {players.map((player, index) => {
+        return <div key={player.id} className="player-section">
+          <div className="leaderboard-left-section">
+          <p className="player-leaderboard-rank">{selectedStat === "world_ranking" ? player.world_ranking : player[`${selectedStat}_rank`]}</p>
+          <img className="player-leaderboard-img" src={player.img}></img>
+          <div className="name-nation-container">
+          <p onClick={() => navigate(`/player/${player.id}`)} className="player-leaderboard-name">{player.name.toUpperCase()}</p>
+          <div className="leaderboard-nation-and-league">
+            <img className="leaderboard-flag-img" src={`../../../../public/images/flags/${countryCodes[player.nation]}.svg`}></img>
+            <p className="leaderboard-nation">{player.nation.toUpperCase()}</p>
+            <img style={player.league === "LIV" ? {width: "48px"} : null} className="leaderboard-league" src={player.league === "PGA" ? "../../public/images/pga.png" : "../../public/images/liv.png"}></img>
+          </div>
+          </div>
+          
+          </div>
+          {selectedStat != "world_ranking" ? <p className="stat-value">{`${isSG && player[selectedStat] > 0 ? "+" : ""}${player[selectedStat]}${isPercent}`}</p> : null}
+        </div>
+      })}
+    </div>
+    
+    
+  </>
+
+
+  )
+}

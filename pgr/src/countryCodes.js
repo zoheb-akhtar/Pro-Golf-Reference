@@ -1,0 +1,31 @@
+const countryCodes = {
+  "Argentina": "ar",
+  "Australia": "au",
+  "Austria": "at",
+  "Belgium": "be",
+  "Canada": "ca",
+  "Chile": "cl",
+  "Colombia": "co",
+  "Denmark": "dk",
+  "England": "gb-eng",
+  "Finland": "fi",
+  "France": "fr",
+  "Germany": "de",
+  "Ireland": "ie",
+  "Italy": "it",
+  "Japan": "jp",
+  "New Zealand": "nz",
+  "Northern Ireland": "gb-nir",
+  "Norway": "no",
+  "Puerto Rico": "pr",
+  "Scotland": "gb-sct",
+  "South Africa": "za",
+  "South Korea": "kr",
+  "Spain": "es",
+  "Sweden": "se",
+  "Taiwan": "tw",
+  "United States": "us",
+  "Venezuela": "ve"
+};
+
+export default countryCodes

@@ -1,0 +1,145 @@
+.header {
+    background-color: #044b3a; 
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .logo-text {
+    margin-left: 32px;
+    color: white;
+    font-size: 32px;
+    text-decoration: underline;
+    text-decoration-color: #044b3a; 
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 500px;
+    margin-left: 128px;
+    margin-right: 48px;
+  }
+  
+  .compare-link,
+  .players-link,
+  .rankings-link,
+  .home-link {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .compare-link .nav-icon,
+  .players-link .nav-icon,
+  .rankings-link .nav-icon,
+  .home-link .nav-icon {
+    transition: opacity 0.2s ease;
+  }
+  
+  /* Label text appears on hover */
+  .compare-link::after,
+  .players-link::after,
+  .rankings-link::after,
+  .home-link::after {
+    content: '';
+    color: white;
+    font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  /* Hover state: show label, hide icon */
+  .compare-link:hover::after,
+  .players-link:hover::after,
+  .rankings-link:hover::after,
+  .home-link:hover::after {
+    opacity: 1;
+  }
+  
+  .compare-link:hover .nav-icon,
+  .players-link:hover .nav-icon,
+  .rankings-link:hover .nav-icon,
+  .home-link:hover .nav-icon {
+    opacity: 0;
+  }
+  
+  .compare-link::after {
+    content: 'COMPARE';
+  }
+  
+  .players-link::after {
+    content: 'PLAYERS';
+  }
+  
+  .rankings-link::after {
+    content: 'RANKINGS';
+  }
+  
+  .home-link::after {
+    content: 'HOME';
+  }
+
+  .hamburger-icon,
+  .close-icon {
+    display: none;
+  }
+  
+  @media (max-width: 768px) {
+    .logo-text {
+      font-size: 24px;
+    }
+    .nav {
+      display: none;
+    }
+  
+    .hamburger-icon {
+      display: block;
+      margin-right: 48px;
+      cursor: pointer;
+    }
+  
+    .mobile-show {
+      position: absolute;
+      top: 150px;
+      left: 0;
+      right: 0;
+      background-color: #044b3a;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 0;
+      display: flex;
+      z-index: 99;
+    }
+  
+    .mobile-show .nav-icon {
+      font-size: 28px;
+    }
+  
+    .close-icon {
+      display: block;
+      position: absolute;
+      top: 16px;
+      right: 48px;
+      cursor: pointer;
+    }
+  
+    .compare-link::after,
+    .players-link::after,
+    .rankings-link::after,
+    .home-link::after {
+      display: none;
+    }
+  }
+  
