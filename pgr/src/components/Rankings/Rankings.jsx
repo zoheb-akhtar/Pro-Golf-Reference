@@ -10,18 +10,31 @@ export default function Rankings() {
   const [players, setPlayers] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
   const navigate = useNavigate()
+  const [pageNumber, setPageNumber] = useState(1)
+  const [showMore, setShowMore] = useState(true)
 
   async function getRankingsByStat(selectedStat) {
     try {
       const direction = selectedStat === "world_ranking" || selectedStat === "scoring_avg" ? "asc" : "desc"
-      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/players/stat?direction=${direction}&stat=${selectedStat}&${searchQuery ? `name=${searchQuery}` : null}`)
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/players/stat?stat=${selectedStat}&direction=${direction}&${searchQuery ? `name=${searchQuery}` : ""}&pageNumber=${pageNumber}`)
       const data = await res.json()
+
+      if (data.players.length < 10) {
+        setShowMore(false)
+      }
 
       if (!res.ok) {
         throw new Error(data.error)
         return data
       }
-      setPlayers(data)
+
+
+      if (pageNumber === 1) {
+        setPlayers(data.players)
+      } else {
+        setPlayers(prevPlayers => [...prevPlayers, ...data.players])
+      }
+      
     } catch (error) {
       console.error("Error getting players", error.message)
     }
@@ -29,15 +42,22 @@ export default function Rankings() {
   }
 
   useEffect(() => {
+    setPageNumber(1)
+    setShowMore(true)
+    setPlayers([])
     getRankingsByStat(selectedStat)
-  }, [searchQuery])
+  }, [searchQuery, selectedStat])
 
   useEffect(() => {
-   getRankingsByStat(selectedStat)
-  }, [selectedStat])
+    getRankingsByStat(selectedStat)
+  }, [pageNumber])
 
   const isPercent = selectedStat === "fairways" || selectedStat === "gir" || selectedStat === "scrambling" ? "%" : ""
   const isSG = selectedStat === "sg_approach" || selectedStat === "sg_putting" || selectedStat === "sg_total"
+
+  function nextPage() {
+    setPageNumber(prevPageNumber => prevPageNumber + 1)
+  }
 
   return (
     <>
@@ -85,6 +105,7 @@ export default function Rankings() {
         </div>
       })}
     </div>
+    {showMore ? <button className="show-more-button-rankings" onClick={nextPage}>Show more</button> : null}
     
     
   </>

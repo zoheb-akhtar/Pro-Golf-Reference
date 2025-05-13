@@ -3,7 +3,8 @@ const router = express.Router()
 const {
     getAllPlayers,
     getPlayerById,
-    getPlayersByStat
+    getPlayersByStat,
+    getPlayerByStatv2
 } = require("./playersController.js")
 
 // GET all players

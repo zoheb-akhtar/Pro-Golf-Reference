@@ -89,6 +89,19 @@
     margin-right: 12px;
     font-weight: 500;
   }
+
+  .show-more-button-rankings {
+    color: white;
+    background-color: #044b3a;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 100px;
+    margin-top: 32px;
+    cursor: pointer;
+  }
+
+  
   
   @media (max-width: 600px) {
     .leaderboard-container {

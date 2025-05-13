@@ -34,6 +34,7 @@ export default function Players() {
   useEffect(() => {
     setPageNumbers(1)
     setShowMore(true)
+    setPlayers([])
   }, [nationFilter, searchQuery, leagueFilter])
  
   useEffect(() => {
@@ -57,7 +58,7 @@ export default function Players() {
         const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/players?${params.toString()}`)
         const data = await res.json()
 
-        if (data.players.count < 25) {
+        if (data.players.length < 25) {
           setShowMore(false)
         }
 
