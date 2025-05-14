@@ -47,5 +47,3 @@ Check it out live here.
 
 - **Dynamic Search and Filtering:** Developed dynamic search and filter functionality that allows users to query data in real time, improving navigation and user interactivity. <br />
 
-## How It Works
-The app pulls real-time data from a PostgreSQL database, which is continuously updated to reflect the latest golf tournament results. The backend, built with Node.js and Express, handles all data retrieval and API requests, while React.js powers the interactive frontend.
