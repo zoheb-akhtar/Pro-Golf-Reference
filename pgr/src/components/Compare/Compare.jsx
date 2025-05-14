@@ -115,7 +115,7 @@ export default function Compare() {
       <div className="players-compare-container">
       <div className="player-one-container">
       <div className="input-box">
-      {playerOne ? null : <input value={playerOneSearchQuery} type="text" placeholder="Player One" className="player-one-search" onChange={(e) => setPlayerOneSearchQuery(e.target.value)}/>}
+      {playerOne ? null : <input value={playerOneSearchQuery} type="text" placeholder="Search for Player One" className="player-one-search" onChange={(e) => setPlayerOneSearchQuery(e.target.value)}/>}
       {playerOneSearchQuery.length > 0 && !noResults ? <div className="search-results-box">
         <ul className="search-results-list">
           {playerOneResults.slice(0,3).map((player) => {
@@ -150,7 +150,7 @@ export default function Compare() {
       </div>
       <div className="player-two-container">
       <div className="input-box">
-      {playerTwo ? null : <input value={playerTwoSearchQuery} type="text" placeholder="Player Two" className="player-one-search" onChange={(e) => setPlayerTwoSearchQuery(e.target.value)}/>}
+      {playerTwo ? null : <input value={playerTwoSearchQuery} type="text" placeholder="Search for Player Two" className="player-one-search" onChange={(e) => setPlayerTwoSearchQuery(e.target.value)}/>}
       {playerTwoSearchQuery.length > 0 && !noResults ? <div className="search-results-box">
         <ul className="search-results-list">
           {playerTwoResults.slice(0,3).map((player) => {

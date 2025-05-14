@@ -12,31 +12,33 @@ export default function Rankings() {
   const navigate = useNavigate()
   const [pageNumber, setPageNumber] = useState(1)
   const [showMore, setShowMore] = useState(true)
+  const [noResults, setNoResults] = useState(false)
 
   async function getRankingsByStat(selectedStat) {
+    setNoResults(false)
+    setShowMore(false)
     try {
       const direction = selectedStat === "world_ranking" || selectedStat === "scoring_avg" ? "asc" : "desc"
       const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/players/stat?stat=${selectedStat}&direction=${direction}&${searchQuery ? `name=${searchQuery}` : ""}&pageNumber=${pageNumber}`)
       const data = await res.json()
 
-      if (data.players.length < 10) {
+      console.log(data.players)
+
+      if (data.players.length < 25) {
         setShowMore(false)
+      } else {
+        setShowMore(true)
       }
 
       if (!res.ok) {
         throw new Error(data.error)
         return data
       }
-
-
-      if (pageNumber === 1) {
-        setPlayers(data.players)
-      } else {
-        setPlayers(prevPlayers => [...prevPlayers, ...data.players])
-      }
       
+      formatRank(selectedStat, data.players)
     } catch (error) {
       console.error("Error getting players", error.message)
+      setNoResults(true)
     }
     
   }
@@ -55,6 +57,29 @@ export default function Rankings() {
   const isPercent = selectedStat === "fairways" || selectedStat === "gir" || selectedStat === "scrambling" ? "%" : ""
   const isSG = selectedStat === "sg_approach" || selectedStat === "sg_putting" || selectedStat === "sg_total"
 
+  function formatRank(selectedStat, players) {
+    const updatedPlayers = players.map((player, index) => {
+      const prevPlayer = players[index - 1];
+      const nextPlayer = players[index + 1];
+  
+      if ((prevPlayer && prevPlayer[selectedStat] === player[selectedStat]) || 
+          (nextPlayer && nextPlayer[selectedStat] === player[selectedStat])) {
+        return { 
+          ...player, 
+          [`${selectedStat}_rank`]: `T${player[`${selectedStat}_rank`]}` 
+        };
+      } else {
+        return player;
+      }
+    })
+
+    if (pageNumber === 1) {
+      setPlayers(updatedPlayers)
+    } else {
+      setPlayers(prevPlayers => [...prevPlayers, ...updatedPlayers])
+    }
+  }
+  
   function nextPage() {
     setPageNumber(prevPageNumber => prevPageNumber + 1)
   }
@@ -75,6 +100,7 @@ export default function Rankings() {
     <select className="select" value={selectedStat} onChange={(e) => setSelectedStat(e.target.value)} id="stat-select">
       <option value="world_ranking">World Ranking</option>
       <option value="scoring_avg">Scoring Average</option>
+      <option value="birdie_avg">Birdie Average</option>
       <option value="driving_avg">Driving Average</option>
       <option value="fairways">Fairways Hit</option>
       <option value="scrambling">Scrambling</option>
@@ -87,7 +113,7 @@ export default function Rankings() {
     </div>
     <div className="leaderboard-container">
       {players.map((player, index) => {
-        return <div key={player.id} className="player-section">
+        return <div key={`${player.id}`} className="player-section">
           <div className="leaderboard-left-section">
           <p className="player-leaderboard-rank">{selectedStat === "world_ranking" ? player.world_ranking : player[`${selectedStat}_rank`]}</p>
           <img className="player-leaderboard-img" src={player.img}></img>
@@ -105,6 +131,7 @@ export default function Rankings() {
         </div>
       })}
     </div>
+    {noResults ? <p className="error-msg-players">No results found</p> : null}
     {showMore ? <button className="show-more-button-rankings" onClick={nextPage}>Show more</button> : null}
     
     

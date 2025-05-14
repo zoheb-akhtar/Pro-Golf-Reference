@@ -1,6 +1,6 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import PlayerCard from '../PlayerCard/PlayerCard'
 import countryCodes from '../../countryCodes'
 import "./players.css"
@@ -8,17 +8,18 @@ import "./players.css"
 export default function Players() {
   const [players, setPlayers] = useState([])
   const [searchQuery, setSearchQuery] = useState("")
-  const [noResults, setNoResults] = useState()
+  const [noResults, setNoResults] = useState(false)
   const [leagueFilter, setLeagueFilter] = useState("all")
   const [nationFilter, setNationFilter] = useState("all")
   const [pageNumber, setPageNumbers] = useState(1)
   const [showMore, setShowMore] = useState(true)
 
+
   async function getAllPlayers() {
     try {
       const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/players`)
       const data = await res.json()
-      if (!res.ok){
+      if (!res.ok) {
         throw new Error(data.error)
       }
       setPlayers(data.players)
@@ -32,23 +33,26 @@ export default function Players() {
   }, [])
 
   useEffect(() => {
-    setPageNumbers(1)
     setShowMore(true)
+    setPageNumbers(1)
     setPlayers([])
   }, [nationFilter, searchQuery, leagueFilter])
- 
+
   useEffect(() => {
-     async function getPlayers() {
+
+    async function getPlayers() {
+      setNoResults(false)
+      setShowMore(false)
       try {
         const params = new URLSearchParams()
 
-        if (nationFilter && nationFilter !== "all"){
+        if (nationFilter && nationFilter !== "all") {
           params.append("nation", nationFilter)
         }
-        if (leagueFilter && leagueFilter !== "all"){
+        if (leagueFilter && leagueFilter !== "all") {
           params.append("league", leagueFilter)
         }
-        if (searchQuery.trim()){
+        if (searchQuery.trim()) {
           params.append("name", searchQuery.trim())
         }
 
@@ -60,13 +64,16 @@ export default function Players() {
 
         if (data.players.length < 25) {
           setShowMore(false)
+        } else {
+          setShowMore(true)
         }
 
         if (!res.ok) {
           throw new Error(data.error)
           return data
         }
-        if (pageNumber === 1){
+
+        if (pageNumber === 1) {
           setPlayers(data.players)
         } else {
           setPlayers(prevPlayers => [...prevPlayers, ...data.players])
@@ -77,50 +84,50 @@ export default function Players() {
         setShowMore(false)
         setNoResults(true)
       }
-     }
+    }
 
-     getPlayers()
+    getPlayers()
   }, [searchQuery, nationFilter, leagueFilter, pageNumber])
-
 
   function appendPlayers() {
     setPageNumbers(prevPage => prevPage + 1)
   }
 
-
   return (
     <>
-    <div className="players-page-top">
-      <h1 className="heading-search">Search</h1>
-      <button className="search-button">
-        <FontAwesomeIcon icon={faSearch} color="white" size="1x"/>
-      </button>
-      <input className="search-input" placeholder="Search for players" onChange={(e) => setSearchQuery(e.target.value)}/>
-      
-      <div className="selects-container">
-      <label htmlFor="select-nation">Nation: </label>
-      <select onChange={(e) => setNationFilter(e.target.value)} id="select-nation" className="select">
-        <option value="all">All</option>
-        {Object.keys(countryCodes).map((country) => {
-          return <option value={country}>{country}</option>
-        })}
-      </select>
-      
-      <label htmlFor="select-league">League: </label>
-      <select onChange={(e) => setLeagueFilter(e.target.value)} id="select-league" className="select">
-        <option value="all">All</option>
-        <option value="PGA">PGA</option>
-        <option value="LIV">LIV</option>
-      </select>
+      <div className="players-page-top">
+        <h1 className="heading-search">Search</h1>
+        <button className="search-button">
+          <FontAwesomeIcon icon={faSearch} color="white" size="1x" />
+        </button>
+        <input className="search-input" placeholder="Search for players" onChange={(e) => setSearchQuery(e.target.value)} />
+
+        <div className="selects-container">
+          <label htmlFor="select-nation">Nation: </label>
+          <select onChange={(e) => setNationFilter(e.target.value)} id="select-nation" className="select">
+            <option value="all">All</option>
+            {Object.keys(countryCodes).map((country) => {
+              return <option value={country} key={country}>{country}</option>
+            })}
+          </select>
+
+          <label htmlFor="select-league">League: </label>
+          <select onChange={(e) => setLeagueFilter(e.target.value)} id="select-league" className="select">
+            <option value="all">All</option>
+            <option value="PGA">PGA</option>
+            <option value="LIV">LIV</option>
+          </select>
+        </div>
+
       </div>
-      
-    </div>
-    <div className="players-container">
-      {noResults ? <p className="error-msg-players">No results found</p> : players.map((player) => {
-        return <PlayerCard key={player.id} player={player} />
-      })}
-    </div>
-    {showMore ? <button className="show-more-button" onClick={appendPlayers}>Show more</button> : null}
+
+      <div className="players-container">
+        {noResults ? <p className="error-msg-players">No results found</p> : players.map((player) => {
+          return <PlayerCard key={player.id} player={player} />
+        })}
+      </div>
+
+      {showMore ? <button className="show-more-button" onClick={appendPlayers}>Show more</button> : null}
     </>
   )
 }
