@@ -39,10 +39,10 @@ export default function Players() {
   }, [nationFilter, searchQuery, leagueFilter])
 
   useEffect(() => {
-
-    async function getPlayers() {
       setNoResults(false)
       setShowMore(false)
+
+    async function getPlayers() {
       try {
         const params = new URLSearchParams()
 
@@ -86,7 +86,14 @@ export default function Players() {
       }
     }
 
-    getPlayers()
+    const timeout = setTimeout(() => {
+      getPlayers()
+    }, 300)
+    
+    return () => {
+      clearTimeout(timeout)
+    }
+   
   }, [searchQuery, nationFilter, leagueFilter, pageNumber])
 
   function appendPlayers() {

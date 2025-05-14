@@ -53,22 +53,36 @@ export default function Compare() {
  }
 
   useEffect(() => {
-    if (playerOneSearchQuery.trim() === "") {
-      setPlayerOneResults([])
+    const timeout = setTimeout(() => {
+      if (playerOneSearchQuery.trim() === "") {
+        setPlayerOneResults([])
+      }
+      if (playerOneSearchQuery.trim().length > 0){
+        getPlayerFromSearch(playerOneSearchQuery, setPlayerOneResults)
+      }
+    }, 300)
+
+    return () => {
+      clearTimeout(timeout)
     }
-    if (playerOneSearchQuery.trim().length > 0){
-      getPlayerFromSearch(playerOneSearchQuery, setPlayerOneResults)
-    }
+    
   }, [playerOneSearchQuery])
 
   useEffect(() => {
-    if (playerTwoSearchQuery.trim() === "") {
-      setPlayerTwoResults([])
-    }
+    const timeout = setTimeout(() => {
+      if (playerTwoSearchQuery.trim() === "") {
+        setPlayerTwoResults([])
+      }
+  
+      if (playerTwoSearchQuery.trim().length > 0){
+        getPlayerFromSearch(playerTwoSearchQuery, setPlayerTwoResults)
+      }
+    }, 300)
 
-    if (playerTwoSearchQuery.trim().length > 0){
-      getPlayerFromSearch(playerTwoSearchQuery, setPlayerTwoResults)
+    return () => {
+      clearTimeout(timeout)
     }
+    
   }, [playerTwoSearchQuery])
 
   function setPlayer(player, setter, searchResultsSetter, searchQuerySetter, key) {

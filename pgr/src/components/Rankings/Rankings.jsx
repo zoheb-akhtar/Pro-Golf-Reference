@@ -44,10 +44,17 @@ export default function Rankings() {
   }
 
   useEffect(() => {
-    setPageNumber(1)
-    setShowMore(true)
-    setPlayers([])
-    getRankingsByStat(selectedStat)
+    const timeout = setTimeout(() => {
+      setPageNumber(1)
+      setShowMore(true)
+      setPlayers([])
+      getRankingsByStat(selectedStat)
+    }, 300)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+    
   }, [searchQuery, selectedStat])
 
   useEffect(() => {
