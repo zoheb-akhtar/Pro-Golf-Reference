@@ -26,6 +26,8 @@ Check it out live [here](#).
 - **Component-Based Architecture:** Using React.js, I structured the app with reusable components, promoting clean code and modularity. This makes it easier to maintain and scale the app. <br />
 - **State Management:** Leveraged React’s `useState` and `useEffect` hooks for managing component states and handling side effects, like fetching player data or updating rankings. <br />
 - **API Integration:** The app communicates with the backend using RESTful APIs built with Node.js and Express, allowing seamless interaction between the frontend and the PostgreSQL database. <br />
+- **Pagination:** Efficiently paginates large datasets of players, displaying a manageable number of players per page. This limits the number of API calls, enhancing performance and reducing server load by fetching only the necessary data for each page. <br />
+
 - **Responsive Web Design:** Applied SCSS with media queries to ensure that the app is responsive and provides an optimal experience across various devices, from desktop to mobile. <br />
 - **Database Normalization:** Designed the PostgreSQL database schema to be normalized, minimizing redundancy and ensuring data integrity while enabling efficient queries. <br />
 - **Error Handling:** Implemented robust error handling in both the frontend and backend to ensure smooth operation, including custom error messages for failed API calls and data retrieval issues. <br />
