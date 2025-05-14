@@ -1,6 +1,6 @@
 # Pro Golf Reference
 
-Welcome to **Pro Golf Reference**! This is a dynamic web application I created to track and explore professional golf player statistics. Developed using a modern tech stack, the platform allows users to view comprehensive player profiles, rankings, and performance data with an intuitive and responsive design.
+Welcome to **Pro Golf Reference**! This is a dynamic web application I created to track and explore professional golf player statistics based on the early 2025 golf season. Developed using a modern tech stack, the platform allows users to view comprehensive player profiles, rankings, and performance data with an intuitive and responsive design.
 
 Check it out live [here](#).
 
