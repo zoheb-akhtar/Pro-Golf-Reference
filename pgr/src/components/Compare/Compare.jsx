@@ -69,7 +69,7 @@ export default function Compare() {
   }, [playerOneSearchQuery])
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const debounce = setTimeout(() => {
       if (playerTwoSearchQuery.trim() === "") {
         setPlayerTwoResults([])
       }
@@ -80,7 +80,7 @@ export default function Compare() {
     }, 300)
 
     return () => {
-      clearTimeout(timeout)
+      clearTimeout(debounce)
     }
     
   }, [playerTwoSearchQuery])

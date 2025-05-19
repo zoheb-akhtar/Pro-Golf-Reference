@@ -44,7 +44,7 @@ export default function Rankings() {
   }
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const debounce = setTimeout(() => {
       setPageNumber(1)
       setShowMore(true)
       setPlayers([])
@@ -52,7 +52,7 @@ export default function Rankings() {
     }, 300)
 
     return () => {
-      clearTimeout(timeout)
+      clearTimeout(debounce)
     }
     
   }, [searchQuery, selectedStat])

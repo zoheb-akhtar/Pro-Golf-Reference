@@ -86,12 +86,12 @@ export default function Players() {
       }
     }
 
-    const timeout = setTimeout(() => {
+    const debounce = setTimeout(() => {
       getPlayers()
     }, 300)
     
     return () => {
-      clearTimeout(timeout)
+      clearTimeout(debounce)
     }
    
   }, [searchQuery, nationFilter, leagueFilter, pageNumber])
