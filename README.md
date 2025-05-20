@@ -18,7 +18,7 @@ Check it out live [here](https://pro-golf-reference.vercel.app/).
 - **Frontend:** React.js, CSS, HTML <br />
 - **Backend:** Node.js, Express.js <br />
 - **Database:** PostgreSQL <br />
-- **Deployment:** Heroku for backend hosting, Supabase for database hosting, and Vercel for frontend hosting <br />
+- **Deployment:** Render for backend hosting, Supabase for database hosting, and Vercel for frontend hosting <br />
 - **Development Tools:** Postman, Git <br />
 
 ## Programming Techniques Used
