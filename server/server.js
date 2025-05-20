@@ -10,6 +10,10 @@ app.use(cors())
 
 app.use("/players", players)
 
+app.get("/ping", (req, res) => {
+    res.send("Server pinged!")
+})
+
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`)
 })
