@@ -36,10 +36,10 @@ export default function PlayerPage() {
             </div>
             <div className="player-nation-and-league-container">
             <div className="player-page-nation-container">
-              <img className="player-page-flag" src={`../../public/images/flags/${countryCodes[player.nation]}.svg`}></img>
+              <img className="player-page-flag" src={`/images/flags/${countryCodes[player.nation]}.svg`}></img>
               <p className="player-page-nation">{player.nation.toUpperCase()}</p>
             </div>
-            <img style={player.league === 'LIV' ? {width: '100px'} : null}className="player-page-league-logo" src={player.league === 'PGA' ? "../../public/images/pga.png" : "../../public/images/liv.png"}></img>
+            <img style={player.league === 'LIV' ? {width: '100px'} : null}className="player-page-league-logo" src={player.league === 'PGA' ? "/images/pga.png" : "/images/liv.png"}></img>
             </div>
             <p className="player-world-ranking">{`WORLD #${player.world_ranking}`}</p>
             <div className="player-stats-container">

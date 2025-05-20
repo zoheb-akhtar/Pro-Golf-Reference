@@ -1,5 +1,5 @@
 import React from 'react'
-import AltLogo from "../../../public/images/logo2.png"
+import AltLogo from "/images/logo2.png"
 import { Link } from 'react-router'
 import "./home.css"
 

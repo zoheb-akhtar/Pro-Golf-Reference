@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router'
-import Logo from "../../../public/images/logo.png"
+import Logo from "/images/logo.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faArrowsLeftRight, faHome, faRankingStar, faUser, faBars, faClose } from '@fortawesome/free-solid-svg-icons'
 import "./layout.css"

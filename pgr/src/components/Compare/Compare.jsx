@@ -148,9 +148,9 @@ export default function Compare() {
        
         <img className="player-one-img" src={playerOne.img}></img>
         <div className="nation-and-league-compare-container">
-          <img className="player-one-flag" src={`../../public/images/flags/${countryCodes[playerOne.nation]}.svg`}></img>
+          <img className="player-one-flag" src={`/images/flags/${countryCodes[playerOne.nation]}.svg`}></img>
           <p className="player-one-nation">{playerOne.nation.toUpperCase()}</p>
-          <img style={playerOne.league === "LIV" ? {width: "80px"} : null}className="player-one-league" src={playerOne.league === "PGA" ? "../../public/images/pga.png" : "../../public/images/liv.png"}></img>
+          <img style={playerOne.league === "LIV" ? {width: "80px"} : null}className="player-one-league" src={playerOne.league === "PGA" ? "/images/pga.png" : "/images/liv.png"}></img>
         </div>
       </div>
       : <div className="select-player-box">
@@ -181,9 +181,9 @@ export default function Compare() {
         </div>
         <img className="player-one-img" src={playerTwo.img}></img>
         <div className="nation-and-league-compare-container">
-          <img className="player-one-flag" src={`../../public/images/flags/${countryCodes[playerTwo.nation]}.svg`}></img>
+          <img className="player-one-flag" src={`/images/flags/${countryCodes[playerTwo.nation]}.svg`}></img>
           <p className="player-one-nation">{playerTwo.nation.toUpperCase()}</p>
-          <img style={playerTwo.league === "LIV" ? {width: "80px"} : null}className="player-one-league" src={playerTwo.league === "PGA" ? "../../public/images/pga.png" : "../../public/images/liv.png"}></img>
+          <img style={playerTwo.league === "LIV" ? {width: "80px"} : null}className="player-one-league" src={playerTwo.league === "PGA" ? "/images/pga.png" : "/images/liv.png"}></img>
         </div>
       </div> : <div className="select-player-box">
         <p className="select-player-text">Select Player Two</p>
