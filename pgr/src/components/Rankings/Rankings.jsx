@@ -4,6 +4,7 @@ import countryCodes from '../../countryCodes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import "./rankings.css"
+import LeaderboardItem from '../LeaderboardItem/LeaderboardItem'
 
 export default function Rankings() {
   const [selectedStat, setSelectedStat] = useState("world_ranking")
@@ -120,22 +121,7 @@ export default function Rankings() {
     </div>
     <div className="leaderboard-container">
       {players.map((player, index) => {
-        return <div key={`${player.id}`} className="player-section">
-          <div className="leaderboard-left-section">
-          <p className="player-leaderboard-rank">{selectedStat === "world_ranking" ? player.world_ranking : player[`${selectedStat}_rank`]}</p>
-          <img className="player-leaderboard-img" src={player.img}></img>
-          <div className="name-nation-container">
-          <p onClick={() => navigate(`/player/${player.id}`)} className="player-leaderboard-name">{player.name.toUpperCase()}</p>
-          <div className="leaderboard-nation-and-league">
-            <img className="leaderboard-flag-img" src={`/images/flags/${countryCodes[player.nation]}.svg`}></img>
-            <p className="leaderboard-nation">{player.nation.toUpperCase()}</p>
-            <img style={player.league === "LIV" ? {width: "48px"} : null} className="leaderboard-league" src={player.league === "PGA" ? "/images/pga.png" : "/images/liv.png"}></img>
-          </div>
-          </div>
-          
-          </div>
-          {selectedStat != "world_ranking" ? <p className="stat-value">{`${isSG && player[selectedStat] > 0 ? "+" : ""}${player[selectedStat]}${isPercent}`}</p> : null}
-        </div>
+        return <LeaderboardItem player={player} selectedStat={selectedStat} isSG={isSG} isPercent={isPercent} />
       })}
     </div>
     {noResults ? <p className="error-msg-players">No results found</p> : null}

@@ -124,8 +124,8 @@ export default function Compare() {
   return (
 
     <>
-    <h1 className="compare-header">Compare Players</h1>
     <div className="compare-page-container">
+    <h1 className="compare-header">Compare Players</h1>
       <div className="players-compare-container">
       <div className="player-one-container">
       <div className="input-box">
