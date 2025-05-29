@@ -11,7 +11,7 @@ export default function Home() {
       <div className="heading-title fade-in-up">Track the World's Best Golfers</div>
       <p className="subheading fade-in-up">Your home for professional golf stats and information!</p>
       <div className="features-container fade-in-up">
-        <Link classname="card-link" to="/compare">
+        <Link className="card-link" to="/compare">
         <div className="feature">
             <FontAwesomeIcon icon={faArrowsAltH} color="#D4AF37" size="2x"></FontAwesomeIcon>
             <p className="feature-header">Compare Players</p>
