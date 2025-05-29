@@ -2,6 +2,10 @@
     margin-left: 64px;
     margin-bottom: 32px;
   }
+
+.heading-search {
+  font-weight: 500;
+}
   
   .selects-container {
     margin-top: 32px;

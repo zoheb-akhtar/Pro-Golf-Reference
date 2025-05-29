@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, NavLink, Outlet } from 'react-router'
 import Logo from "/images/logo.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {faArrowsLeftRight, faHome, faRankingStar, faUser, faBars, faClose } from '@fortawesome/free-solid-svg-icons'
+import {faBars, faClose } from '@fortawesome/free-solid-svg-icons'
 import "./layout.css"
 
 
@@ -11,25 +11,27 @@ export default function Layout() {
   return (
     <>
     <div className="header">
-        <Link to="/">
-            <h2 className="logo-text">Pro Golf Reference</h2>
+      <div className="logo-container">
+      <Link className="logo-link" to="/">
+            <img className="logo-img" src={Logo}/>
         </Link>
+      </div>
         <div className={showNav ? "mobile-show" : "nav"}>
-          <NavLink className="home-link" to="/">
-            <FontAwesomeIcon className="nav-icon" icon={faHome} color="white" size="2x" />
+          <NavLink className={({ isActive }) => isActive ? "home-link active" : "home-link"} to="/">
+            <p className="link-text">Home</p>
           </NavLink>
-          <NavLink className="compare-link" to="/compare">
-            <FontAwesomeIcon className="nav-icon" icon={faArrowsLeftRight} color="white" size="2x"/>
+          <NavLink className={({ isActive }) => isActive ? "compare-link active" : "compare-link"} to="/compare">
+            <p className="link-text">Compare</p>
           </NavLink>
-          <NavLink className="players-link" to="/players">
-            <FontAwesomeIcon className="nav-icon" icon={faUser} color="white" size="2x" />
+          <NavLink className={({ isActive }) => isActive ? "players-link active" : "players-link"} to="/players">
+            <p className="link-text">Players</p>
           </NavLink>
-          <NavLink className="rankings-link" to="/rankings">
-            <FontAwesomeIcon className="nav-icon" icon={faRankingStar} color="white" size="2x" />
+          <NavLink className={({ isActive }) => isActive ? "rankings-link active" : "rankings-link"} to="/rankings">
+            <p className="link-text">Rankings</p>
           </NavLink>
-          <FontAwesomeIcon onClick={() => setShowNav(false)} icon={faClose} color="white" size="1x" className="close-icon"/>
+          <FontAwesomeIcon onClick={() => setShowNav(false)} icon={faClose} color="black" size="1x" className="close-icon"/>
         </div>
-        <FontAwesomeIcon onClick={() => setShowNav(true)}icon={faBars} color="white" size="2x" className="hamburger-icon"/>
+        <FontAwesomeIcon onClick={() => setShowNav(true)}icon={faBars} color="black" size="2x" className="hamburger-icon"/>
     </div>
     <Outlet />
     </>

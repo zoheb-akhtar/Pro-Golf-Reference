@@ -1,22 +1,62 @@
 .header {
-    background-color: #044b3a; 
     z-index: 100;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 150px;
+    height: 110px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+    background-color: white;
+  }
+
+  .logo-container {
+    padding-left: 24px;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-img {
+    height: 75px;
+    width: auto;
+    object-fit: contain;
   }
   
   .logo-text {
     margin-left: 32px;
-    color: white;
-    font-size: 32px;
-    text-decoration: underline;
-    text-decoration-color: #044b3a; 
+    color: black;
+    font-size: 18px;
+  }
+
+  .link-text {
+    color: gray;
+    font-weight: 500;
+    transition: color 0.15s;
+  }
+
+  .link-text:hover {
+    color: black;
+  }
+
+  .home-link,
+  .compare-link,
+  .players-link,
+  .rankings-link,
+  .logo-link {
+    text-decoration: none;
+  }
+
+  .compare-link.active .link-text,
+  .home-link.active .link-text,
+  .players-link.active .link-text,
+  .rankings-link.active .link-text {
+    font-size: 18px;
+    color: black;
+    font-weight: bold;
+    border-bottom: 4px solid #D4AF37; 
+    padding-bottom: 4px; 
   }
   
   .nav {
@@ -59,36 +99,6 @@
     transition: opacity 0.2s ease;
   }
   
-  /* Hover state: show label, hide icon */
-  .compare-link:hover::after,
-  .players-link:hover::after,
-  .rankings-link:hover::after,
-  .home-link:hover::after {
-    opacity: 1;
-  }
-  
-  .compare-link:hover .nav-icon,
-  .players-link:hover .nav-icon,
-  .rankings-link:hover .nav-icon,
-  .home-link:hover .nav-icon {
-    opacity: 0;
-  }
-  
-  .compare-link::after {
-    content: 'COMPARE';
-  }
-  
-  .players-link::after {
-    content: 'PLAYERS';
-  }
-  
-  .rankings-link::after {
-    content: 'RANKINGS';
-  }
-  
-  .home-link::after {
-    content: 'HOME';
-  }
 
   .hamburger-icon,
   .close-icon {
@@ -111,10 +121,11 @@
   
     .mobile-show {
       position: absolute;
+      position: fixed;
       top: 150px;
       left: 0;
       right: 0;
-      background-color: #044b3a;
+      background-color: white;
       flex-direction: column;
       align-items: center;
       gap: 24px;

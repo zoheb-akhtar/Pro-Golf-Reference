@@ -1,32 +1,19 @@
-.home-page {
-    margin-left: 84px;
+  .home-page {
+    max-width: 1200px;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 2rem;
   }
   
-  .alt-logo {
-    width: 160px;
-  }
-  
-  .text-container {
-    font-size: 28px;
-    line-height: 36px;
-  }
-  
-  .top-line {
-    margin-bottom: 0px;
-    font-size: 40px;
-  }
-  
-  .bottom-line {
-    color: #044b3a;
-    font-size: 40px;
-    font-weight: bold;
-  }
-  
-  .subheading {
-    font-size: 18px;
-    color: hsl(0, 0%, 45%);
-    margin-top: 0px;
-    margin-bottom: 32px;
+  .heading-title {
+    font-size: 52px;
+    font-weight: 500;
+    max-width: 500px;
+    margin-top: 52px;
+    text-align: center;
   }
   
   .home-get-started {
@@ -45,6 +32,69 @@
     background-color: #033f31;
   }
 
+  .features-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-top: 32px;
+  }
+
+  .feature {
+    background-color: #044b3a;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 250px;
+    color: white;
+    border-radius: 12px;
+    cursor: pointer;
+  }
+
+  .card-link {
+    text-decoration: none;
+  }
+
+  .feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .feature-header {
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  .feature-text {
+    font-weight: 300;
+    max-width: 250px;
+    text-align: center;
+  }
+
+  .subheading {
+    font-size: 20px;
+    opacity: #555;
+    color: hsl(0, 0%, 40%);
+    text-align: center;
+  }
+
+  .fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   @media (max-width: 600px) {
     .home-page {
       margin-left: 16px;
@@ -53,5 +103,10 @@
   
     .alt-logo {
       width: 120px;
+    }
+
+    .features-container {
+      display: flex;
+      flex-direction: column;
     }
 }
