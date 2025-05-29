@@ -15,7 +15,7 @@ export default function Home() {
         <div className="feature">
             <FontAwesomeIcon icon={faArrowsAltH} color="#D4AF37" size="2x"></FontAwesomeIcon>
             <p className="feature-header">Compare Players</p>
-            <div className="feature-text">Compare the stats of the worlds best players.</div>
+            <div className="feature-text">Compare the stats of the world's best players.</div>
         </div>
         </Link>
         
