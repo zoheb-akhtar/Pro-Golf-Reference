@@ -5,7 +5,7 @@ import Compare from './components/Compare/Compare'
 import Players from './components/Players/Players'
 import Rankings from './components/Rankings/Rankings'
 import PlayerPage from './components/PlayerProfile/PlayerProfile'
-import Navbar from './components/Navbar/navbar'
+import Navbar from './components/Navbar/Navbar'
 
 
 
