@@ -1,9 +1,10 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState, useEffect } from 'react'
-import PlayerCard from '../PlayerCard/PlayerCard'
-import countryCodes from '../../countryCodes'
+import PlayerCard from './PlayerCard'
+import countryCodes from '../../utils/countryCodes'
 import "./players.css"
+import SearchInput from '../SearchInput/SearchInput'
 
 export default function Players() {
   const [players, setPlayers] = useState([])
@@ -102,12 +103,10 @@ export default function Players() {
 
   return (
     <>
+    <h1 className="heading-search">Search</h1>
       <div className="players-page-top">
-        <h1 className="heading-search">Search</h1>
-        <button className="search-button">
-          <FontAwesomeIcon icon={faSearch} color="white" size="1x" />
-        </button>
-        <input className="search-input" placeholder="Search for players" onChange={(e) => setSearchQuery(e.target.value)} />
+        <SearchInput setSearchQuery={setSearchQuery} placeholder={"Search for players"}/>
+        
 
         <div className="selects-container">
           <label htmlFor="select-nation">Nation: </label>

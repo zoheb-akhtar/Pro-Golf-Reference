@@ -1,8 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./home.css"
 import {faArrowsAltH, faListOl, faUserFriends } from '@fortawesome/free-solid-svg-icons'
+import HomeFeatureCard from './HomeFeatureCard'
 
 export default function Home() {
   return (
@@ -11,28 +10,28 @@ export default function Home() {
       <div className="heading-title fade-in-up">Track the World's Best Golfers</div>
       <p className="subheading fade-in-up">Your home for professional golf stats and information!</p>
       <div className="features-container fade-in-up">
-        <Link className="card-link" to="/compare">
-        <div className="feature">
-            <FontAwesomeIcon icon={faArrowsAltH} color="#D4AF37" size="2x"></FontAwesomeIcon>
-            <p className="feature-header">Compare Players</p>
-            <div className="feature-text">Compare the stats of the world's best players.</div>
-        </div>
-        </Link>
         
-        <Link className="card-link" to="/players">
-        <div className="feature">
-            <FontAwesomeIcon icon={faUserFriends} color="#D4AF37" size="2x"></FontAwesomeIcon>
-            <p className="feature-header">Search for players</p>
-            <div className="feature-text">Search for your favorite players across all countries and leagues.</div>
-        </div>
-        </Link>
-        <Link className="card-link" to="/rankings">
-        <div className="feature">
-            <FontAwesomeIcon icon={faListOl} color="#D4AF37" size="2x"/> 
-            <p className="feature-header">See Player Stat Rankings</p>
-            <div className="feature-text">See how players compare based on their stats.</div>
-        </div>
-        </Link>
+      <HomeFeatureCard 
+        icon={faArrowsAltH}
+        title={"Compare Players"}
+        subtitle={"Compare the stats of the world's best players."}
+        link={"/compare"}
+        />
+
+      <HomeFeatureCard 
+        icon={faUserFriends}
+        title={"Search for players"}
+        subtitle={"Search for your favorite players across all countries and leagues."}
+        link={"/players"}
+        />
+
+      <HomeFeatureCard 
+        icon={faListOl}
+        title={"See Player Stat Rankings"}
+        subtitle={"See how players compare based on their stats."}
+        link={"/rankings"}
+        />
+        
         
       </div>
     </div>

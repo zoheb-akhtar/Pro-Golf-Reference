@@ -1,11 +1,8 @@
 const express = require("express")
 const router = express.Router()
-const {
-    getAllPlayers,
-    getPlayerById,
-    getPlayersByStat,
-    getPlayerByStatv2
-} = require("./playersController.js")
+const getAllPlayers = require("./controller/getAllPlayers")
+const getPlayerById = require("./controller/getPlayerById")
+const getPlayersByStat = require("./controller/getPlayersByStat")
 
 // GET all players
 router.get("/", getAllPlayers)

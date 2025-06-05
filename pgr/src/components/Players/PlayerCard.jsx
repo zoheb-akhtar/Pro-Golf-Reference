@@ -1,15 +1,15 @@
 import React from 'react'
-import countryCodes from '../../countryCodes.js'
+import countryCodes from '../../utils/countryCodes.js'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router'
-import "./player-card.css"
+import "./players.css"
 
 export default function PlayerCard({player}) {
     const navigate = useNavigate()
   return (
     <div onClick={() => navigate(`/player/${player.id}`)} key={player.id} className="player">
-          <img style={player.league === "LIV" ? {width: "70px"} : null}className="player-league" src={player.league === "PGA" ? "/images/pga.png" : "/images/liv.png"}></img>
+          <img style={player.league === "LIV" ? {width: "70px"} : null} className="player-league" src={player.league === "PGA" ? "/images/pga.png" : "/images/liv.png"}></img>
           <img className="player-img" src={player.img}></img>
           <div className="bottom">
             <div className="left-section">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
-import countryCodes from '../../countryCodes'
-import "./player-page.css"
+import countryCodes from '../../utils/countryCodes'
+import "./player-profile.css"
 
 export default function PlayerPage() {
     const { id } = useParams()

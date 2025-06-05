@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router'
-import countryCodes from '../../countryCodes'
-import "./leaderboard-item.css"
+import countryCodes from '../../utils/countryCodes'
+import "./rankings.css"
 
 
 export default function LeaderboardItem({player, selectedStat, isSG, isPercent}) {

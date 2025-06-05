@@ -1,0 +1,24 @@
+.search-input {
+    height: 55px;
+    width: 400px;
+    border: 1px solid gray;
+    padding-left: 10px;
+    font-family: Inter;
+    font-size: 14px;
+    margin-top: 3px;
+    margin-right: 24px;
+  }
+  
+  .search-input:focus {
+    outline: none;
+  }
+
+  @media (max-width: 600px) { 
+
+    .search-input {
+        width: 170px; 
+        margin-right: 0;
+        font-size: 10px;
+      }
+
+  }

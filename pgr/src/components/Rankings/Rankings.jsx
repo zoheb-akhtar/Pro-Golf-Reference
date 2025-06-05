@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import countryCodes from '../../countryCodes'
+import countryCodes from '../../utils/countryCodes'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import "./rankings.css"
-import LeaderboardItem from '../LeaderboardItem/LeaderboardItem'
+import LeaderboardItem from './LeaderboardItem'
+import SearchInput from '../SearchInput/SearchInput'
 
 export default function Rankings() {
   const [selectedStat, setSelectedStat] = useState("world_ranking")
@@ -94,14 +95,9 @@ export default function Rankings() {
 
   return (
     <>
+     <h1 className="rankings-header">Rankings</h1>
     <div className="rankings-page-top">
-        <h1 className="rankings-header">Rankings</h1>
-    <div className="search-input-container">
-    <button style={{marginLeft: "32px", marginBottom: "18px"}}className="search-button">
-        <FontAwesomeIcon icon={faSearch} color="white" size="1x"/>
-      </button>
-      <input className="search-input" placeholder="Search the leaderboard" onChange={(e) => setSearchQuery(e.target.value)}/>
-    </div>
+    <SearchInput setSearchQuery={setSearchQuery} placeholder={"Search the leaderboard"}/>
    
    <div className="select-container">
    <label className="select-label" htmlFor="stat-select">Rank By: </label>

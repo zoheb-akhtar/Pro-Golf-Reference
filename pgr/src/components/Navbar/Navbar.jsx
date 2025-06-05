@@ -3,10 +3,10 @@ import { Link, NavLink, Outlet } from 'react-router'
 import Logo from "/images/logo.png"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {faBars, faClose } from '@fortawesome/free-solid-svg-icons'
-import "./layout.css"
+import "./navbar.css"
 
 
-export default function Layout() {
+export default function Navbar() {
   const [showNav, setShowNav] = useState(false)
   return (
     <>
