@@ -29,7 +29,7 @@ export default function CompareStatsTable({playerOne, playerTwo}) {
         return `${isSg}${player[statForPlayer]}${isPercent}`
       }
 
-    function createTableRow(statForPlayer, stat) {
+    function createTableRow(statForPlayer, stat, key) {
         let playerOneClass
         let playerTwoClass
         if (statForPlayer === "world_ranking" || statForPlayer === "scoring_avg") {
@@ -40,7 +40,7 @@ export default function CompareStatsTable({playerOne, playerTwo}) {
           playerTwoClass = playerTwo[statForPlayer] > playerOne[statForPlayer] ? "stat-better-than" : "stat-less-than"
         }
     
-        return <tr>
+        return <tr key={key}>
         <td className={playerOneClass}>{formatValues(playerOne, statForPlayer)}</td>
         <td>{stat}</td>
         <td className={playerTwoClass}>{formatValues(playerTwo, statForPlayer)}</td>
@@ -50,14 +50,18 @@ export default function CompareStatsTable({playerOne, playerTwo}) {
   return (
     <div className="table-container">
       <table ref={table}>
+        <thead>
       <tr>
         <th>{playerOne.name}</th>
         <th>Stats</th>
         <th>{playerTwo.name}</th>
       </tr>
+      </thead>
+      <tbody>
       {tableRows.map((row) => {
-        return createTableRow(row.key, row.label)
+        return createTableRow(row.key, row.label, row.key)
       })}
+      </tbody>
       </table>
       </div>
     

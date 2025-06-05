@@ -1,6 +1,5 @@
 import React from 'react'
 import countryCodes from '../../utils/countryCodes'
-import "./compare.css"
 import { useNavigate } from 'react-router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
@@ -26,6 +25,7 @@ export default function CompareCard({playerSearchQuery, setPlayerSearchQuery, no
       playerResults={playerResults}
       setPlayerResults={setPlayerResults}
       setThisPlayer={setThisPlayer}
+      localStorageKey={localStorageKey}
       />}
       {player ? 
       <div className="player-compare-card">

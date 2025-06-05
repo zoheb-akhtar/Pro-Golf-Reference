@@ -3,7 +3,6 @@ import countryCodes from '../../utils/countryCodes.js'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useNavigate } from 'react-router'
-import "./players.css"
 
 export default function PlayerCard({player}) {
     const navigate = useNavigate()
