@@ -12,18 +12,21 @@ export default function CompareCard({playerSearchQuery, setPlayerSearchQuery, no
     function removePlayer() {
         localStorage.removeItem(localStorageKey)
         setThisPlayer(null)
+        setPlayerSearchQuery("")
       }
 
   return (
     <div className="player-container">
-      <CompareSearchInput 
+      
+      {player ? null : <CompareSearchInput 
       playerSearchQuery={playerSearchQuery}
       placeholder={placeholder}
       setPlayerSearchQuery={setPlayerSearchQuery}
       noResults={noResults}
       playerResults={playerResults}
       setPlayerResults={setPlayerResults}
-      />
+      setThisPlayer={setThisPlayer}
+      />}
       {player ? 
       <div className="player-compare-card">
         <button onClick={removePlayer} className="close-button">&#10005;</button>

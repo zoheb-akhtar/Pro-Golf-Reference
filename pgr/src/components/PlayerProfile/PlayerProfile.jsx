@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router'
 import countryCodes from '../../utils/countryCodes'
+import StatTile from './StatTile'
 import "./player-profile.css"
 
 export default function PlayerPage() {
     const { id } = useParams()
     const [player, setPlayer] = useState()
-
+    
     useEffect(() => {
       async function getPlayerFromID() {
         try {
@@ -22,6 +23,7 @@ export default function PlayerPage() {
       }
       getPlayerFromID()
     }, [])
+
 
   return (
     <div>
@@ -44,50 +46,19 @@ export default function PlayerPage() {
             <p className="player-world-ranking">{`WORLD #${player.world_ranking}`}</p>
             <div className="player-stats-container">
 
-            <div className="stat-tile">
-                <p className="stat-title">Scoring Average</p>
-                <div className="stat-value">{player.scoring_avg} <span className="player-page-rank">{`(#${player.scoring_avg_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-                <p className="stat-title">Birdie Average</p>
-                <div className="stat-value">{player.birdie_avg} <span className="player-page-rank">{`(#${player.birdie_avg_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-                <p className="stat-title">Driving Average</p>
-                <div className="stat-value">{player.driving_avg} <span className="player-page-rank">{`(#${player.driving_avg_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-                <p className="stat-title">Fairways Hit</p>
-                <div className="stat-value">{`${player.fairways}%`} <span className="player-page-rank">{`(#${player.fairways_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-                <p className="stat-title">Greens In Regulation</p>
-                <div className="stat-value">{`${player.gir}%`} <span className="player-page-rank">{`(#${player.gir_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-                <p className="stat-title">Scrambling</p>
-                <div className="stat-value">{`${player.scrambling}%`} <span className="player-page-rank">{`(#${player.scrambling_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-                <p className="stat-title">Strokes Gained: Approach</p>
-                <div className="stat-value">{`${player.sg_approach > 0 ? '+' : ""}${player.sg_approach}`} <span className="player-page-rank">{`(#${player.sg_approach_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-                <p className="stat-title">Strokes Gained: Putting</p>
-                <div className="stat-value">{`${player.sg_putting > 0 ? '+' : ""}${player.sg_putting}`} <span className="player-page-rank">{`(#${player.sg_putting_rank})`}</span></div>
-              </div>
-
-              <div className="stat-tile">
-              <p className="stat-title">Strokes Gained: Total</p>
-              <div className="stat-value">{`${player.sg_total > 0 ? '+' : ''}${player.sg_total}`} <span className="player-page-rank">{`(#${player.sg_total_rank})`}</span> </div>
-            </div>
+              {[
+                { title: "Scoring Average", value: player.scoring_avg, rank: player.scoring_avg_rank },
+                { title: "Birdie Average", value: player.birdie_avg, rank: player.birdie_avg_rank },
+                { title: "Driving Average", value: player.driving_avg, rank: player.driving_avg_rank },
+                { title: "Fairways Hit", value: `${player.fairways}%`, rank: player.fairways_rank },
+                { title: "Greens In Regulation", value: `${player.gir}%`, rank: player.gir_rank },
+                { title: "Scrambling", value: `${player.scrambling}%`, rank: player.scrambling_rank },
+                { title: "Strokes Gained: Approach", value: `${player.sg_approach > 0 ? "+" : ""}${player.sg_approach}`, rank: player.sg_approach_rank },
+                { title: "Strokes Gained: Putting", value: `${player.sg_putting > 0 ? "+" : ""}${player.sg_putting}`, rank: player.sg_putting_rank },
+                { title: "Strokes Gained: Total", value: `${player.sg_total > 0 ? "+" : ""}${player.sg_total}`, rank: player.sg_total_rank },
+              ].map((statTile) => {
+                return <StatTile key={statTile.title} statName={statTile.title} stat={statTile.value} statRank={statTile.rank}/>
+              })}
 
             </div>
           </div>

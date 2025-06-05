@@ -2,6 +2,19 @@ import React, {useRef, useEffect} from 'react'
 
 
 export default function CompareStatsTable({playerOne, playerTwo}) {
+  const tableRows = [
+    { key: "world_ranking", label: "World Ranking" },
+    { key: "scoring_avg", label: "Scoring Average" },
+    { key: "birdie_avg", label: "Birdie Average" },
+    { key: "driving_avg", label: "Driving Average" },
+    { key: "fairways", label: "Fairways Hit" },
+    { key: "gir", label: "Greens in Regulation" },
+    { key: "scrambling", label: "Scrambling" },
+    { key: "sg_approach", label: "Strokes Gained: Approach" },
+    { key: "sg_putting", label: "Strokes Gained: Putting" },
+    { key: "sg_total", label: "Strokes Gained: Total" },
+  ]
+
     const table = useRef(null)
 
     useEffect(() => {
@@ -42,16 +55,9 @@ export default function CompareStatsTable({playerOne, playerTwo}) {
         <th>Stats</th>
         <th>{playerTwo.name}</th>
       </tr>
-        {createTableRow("world_ranking", "World Ranking")}
-        {createTableRow("scoring_avg", "Scoring Average")}
-        {createTableRow("birdie_avg", "Birdie Average")}
-        {createTableRow("driving_avg", "Driving Average")}
-        {createTableRow("fairways", "Fairways Hit")}
-        {createTableRow("gir", "Greens in Regulation")}
-        {createTableRow("scrambling", "Scrambling")}
-        {createTableRow("sg_approach", "Strokes Gained: Approach")}
-        {createTableRow("sg_putting", "Strokes Gained: Putting")}
-        {createTableRow("sg_total", "Strokes Gained: Total")}
+      {tableRows.map((row) => {
+        return createTableRow(row.key, row.label)
+      })}
       </table>
       </div>
     

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./compare.css"
 
-export default function CompareSearchInput({playerSearchQuery, placeholder, setPlayerSearchQuery, noResults, playerResults, player, setPlayerResults}) {
+export default function CompareSearchInput({playerSearchQuery, placeholder, setPlayerSearchQuery, noResults, playerResults, player, setPlayerResults, setThisPlayer}) {
 
     function handleSelect(player) {
         setThisPlayer(player)
